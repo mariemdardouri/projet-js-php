@@ -1,0 +1,205 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .search-icons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-icons input {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .search-icons span {
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('images/newin.jpg'); 
+            background-size: auto;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+        }
+       
+  
+
+
+.hero-second {
+    background-image: url('images/home.webp'); 
+            background-size:contain;
+            background-position:center;
+            height: 80vh;
+            width:60 wh ;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+    
+}
+.hero-third {
+    background-image: url('images/home2.jpg'); 
+            background-size:cover;
+            background-position:center;
+            height: 80vh;
+            width:60 wh ;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+    
+}
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+       
+
+        .hero button:hover {
+            background-color: #e55b5b;
+        }
+
+        .newsletter-footer {
+    background-color: #fff;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.newsletter-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.newsletter-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.newsletter-subtitle {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.newsletter-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.email-input {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.subscribe-button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.subscribe-button:hover {
+    background-color: #333;
+}
+
+.unsubscribe-link {
+    font-size: 14px;
+    color: #666;
+    text-decoration: underline;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-column a {
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer-column a:hover {
+    color: #f76c6c;
+}
+.sales-info {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.sales-info h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.sales-info p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+
+    
