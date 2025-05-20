@@ -1,10 +1,7 @@
 <?php
-include '../php/config.php';
+include 'php/config.php';
 session_start();
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header("Location: /connexion.html");
-    exit();
-}
+$user = $_SESSION['user'] ?? null;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,87 +9,14 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Site de Vêtements</title>
-    <link rel="stylesheet" href="home.css">
-    <style>
-        .sidebar {
-            height: 100%;
-            width: 0;
-            position: fixed;
-            z-index: 1001;
-            top: 0;
-            left: 0;
-            background-color: #fff;
-            overflow-x: hidden;
-            transition: 0.3s;
-            padding-top: 60px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.2);
-        }
-
-        .sidebar a {
-            padding: 15px 30px;
-            text-decoration: none;
-            font-size: 18px;
-            color: #333;
-            display: block;
-            transition: 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: #f76c6c;
-            color: #fff;
-        }
-
-        .closebtn {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        #overlay {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .menu-icon {
-            font-size: 26px;
-            cursor: pointer;
-            
-        }.nav {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .nav a:hover {
-            color: #f76c6c;
-        }
-    </style>
+    <link rel="stylesheet" href="home.css?v=1">
 
 </head>
 <body>
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="../admin/admin_utilisateurs.php">Gérer les utilisateurs</a>
-        <a href="../admin/admin_vetements.php">Gérer les vêtements</a>
-        <a href="../admin/admin_categories.php">Gérer les catégories</a>
-        <a href="../admin/admin_commandes.php">Gérer les commandes</a>
     </div>
     <header>
-        
         <nav class="nav">
             <span class="menu-icon" onclick="openNav()">&#9776;</span>
             <a href="femme/femme.php">Femmes</a>
@@ -100,9 +24,15 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
         </nav>
         <div class="logo">Vêtements Chic</div>
         <div class="search-icons">
-            <input type="search" placeholder="Rechercher...">
-            <span>Bienvenue, <?php echo $_SESSION['user']['prenom']; ?></span>
-            <a href="../php/logout.php"><button>Déconnexion</button></a>
+            <input type="text" placeholder="Rechercher...">
+            <?php if ($user): ?>
+                <span>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> !</span>
+                <form action="php/logout.php" method="post" style="display:inline;">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            <?php else: ?>
+                <a href="connexion.html"><button>Connexion</button></a>
+            <?php endif; ?>
             <a href="#" title="Favoris">❤</a>
         </div>
     </header>
@@ -169,12 +99,10 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
     <script>
         function openNav() {
         document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("overlay").style.display = "block";
     }
 
     function closeNav() {
         document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("overlay").style.display = "none";
     }
     </script>
 </body>

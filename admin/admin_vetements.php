@@ -106,9 +106,6 @@ if (isset($_GET['supprimer'])) {
     exit();
 }
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

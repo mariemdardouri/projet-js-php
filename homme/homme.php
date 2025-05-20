@@ -1,6 +1,7 @@
 <?php
 include '../php/config.php';
-
+session_start();
+$user = $_SESSION['user'] ?? null;
 $vetements = $pdo->query("SELECT * FROM vetements WHERE sexe = 'homme'")->fetchAll();
 ?>
 <!DOCTYPE html>
@@ -9,31 +10,42 @@ $vetements = $pdo->query("SELECT * FROM vetements WHERE sexe = 'homme'")->fetchA
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homme - Vêtements Chic</title>
-    <link rel="stylesheet" href="homme.css">
+    <link rel="stylesheet" href="homme.css?v=<?php echo time(); ?>">
     
 </head>
 <body>
-     <header>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>  
+    <header>
+        <nav class="nav">
+            <span class="menu-icon" onclick="openNav()">&#9776;</span>
+            <a href="../femme/femme.php">Femmes</a>
+            <a href="homme.php">Hommes</a>
+        </nav>
+        <div class="logo">Vêtements Chic</div>
         <div class="search-icons">
-            <input type="search" placeholder="Rechercher...">
-            <a href="../connexion.html"> <button title="Connexion">Connexion</button></a>
+            <input type="text" placeholder="Rechercher...">
+            <?php if ($user): ?>
+                <span>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> !</span>
+                <form action="../php/logout.php" method="post" style="display:inline;">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            <?php else: ?>
+                <a href="../connexion.html"><button>Connexion</button></a>
+            <?php endif; ?>
             <a href="#" title="Favoris">❤</a>
         </div>
-        <div class="logo">Vêtements Chic</div>
-        <nav class="nav">
-            <a href="../home.html">Acceuil</a>
-            <a href="../femme/femme.php">Femmes</a>
-            <a href="../homme/homme.php">Hommes</a>
-        </nav>
     </header>
 
     <section class="categories">
-        <a href="femme.php" class="category-btn">Tous</a>
-        <a href="jeanf.html" class="category-btn">Jeans</a>
-        <a href="vestef.html" class="category-btn">Vestes</a>
-        <a href="pullf.html" class="category-btn">Pulls</a>
-        <a href="accessoiref.html" class="category-btn">Accessoires</a>
-        <a href="chaussuref.html" class="category-btn">Chaussures</a>
+        <a href="homme.php" class="category-btn">Tous</a>
+        <a href="jeanH.php" class="category-btn">Jeans</a>
+        <a href="vesteh.php" class="category-btn">Vestes</a>
+        <a href="pullh.php" class="category-btn">Pulls</a>
+        <a href="chemiseh.php" class="category-btn">Chemises</a>
+        <a href="accessoireh.php" class="category-btn">Accessoires</a>
+        <a href="chaussureh.php" class="category-btn">Chaussures</a>
     </section>
 
     <section class="product-grid">
@@ -44,18 +56,30 @@ $vetements = $pdo->query("SELECT * FROM vetements WHERE sexe = 'homme'")->fetchA
             $tailles = $stmtTailles->fetchAll();
             ?>
             <div class="product-item">
-                <img src="../images/<?php echo htmlspecialchars($vetement['image']); ?>" alt="<?php echo htmlspecialchars($vetement['nom']); ?>">
-                
-                <div class="size-options">
-                    <?php foreach ($tailles as $taille): ?>
-                        <span class="size"><?php echo htmlspecialchars($taille['taille']); ?></span>
-                    <?php endforeach; ?>
+                <div class="image-container">
+                    <img src="../images/<?php echo htmlspecialchars($vetement['image']); ?>" alt="<?php echo htmlspecialchars($vetement['nom']); ?>">
+                    <div class="size-overlay">
+                        <label>Sélectionne une taille :</label>
+                        <div class="size-options">
+                            <?php foreach ($tailles as $taille): ?>
+                                <span class="size"><?php echo htmlspecialchars($taille['taille']); ?></span>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
                 </div>
-                
-                <p class="price">Prix : <?php echo number_format($vetement['prix'], 2); ?> TND</p>
-                <button class="order-btn">Commander</button>
+                <div class="product-name"><?php echo htmlspecialchars($vetement['nom']); ?></div>
+                <p class="price"><?php echo number_format($vetement['prix'], 2); ?> TND</p>
             </div>
         <?php endforeach; ?>
     </section>
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
 </body>
 </html>

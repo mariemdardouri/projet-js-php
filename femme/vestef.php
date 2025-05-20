@@ -1,6 +1,7 @@
 <?php
 include '../php/config.php';
-
+session_start();
+$user = $_SESSION['user'] ?? null;
 $vetements = $pdo->query("SELECT v.* 
     FROM vetements v
     JOIN categories c ON v.id_categorie = c.id_categorie
@@ -16,22 +17,32 @@ if ($vetements == 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Femme - Vêtements Chic</title>
-    <link rel="stylesheet" href="femme.css">
+    <link rel="stylesheet" href="femme.css?v=<?php echo time(); ?>">
     
 </head>
 <body>
-     <header>
-        <div class="search-icons">
-            <input type="search" placeholder="Rechercher...">
-            <a href="../connexion.html"> <button title="Connexion">Connexion</button></a>
-            <a href="#" title="Favoris">❤</a>
-        </div>
-        <div class="logo">Vêtements Chic</div>
+     <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>  
+    <header>
         <nav class="nav">
-            <a href="../home.html">Acceuil</a>
-            <a href="../femme/femme.php">Femmes</a>
+            <span class="menu-icon" onclick="openNav()">&#9776;</span>
+            <a href="femme.php">Femmes</a>
             <a href="../homme/homme.php">Hommes</a>
         </nav>
+        <div class="logo">Vêtements Chic</div>
+        <div class="search-icons">
+            <input type="text" placeholder="Rechercher...">
+            <?php if ($user): ?>
+                <span>Bienvenue, <?= htmlspecialchars($user['prenom']) ?> !</span>
+                <form action="../php/logout.php" method="post" style="display:inline;">
+                    <button type="submit">Déconnexion</button>
+                </form>
+            <?php else: ?>
+                <a href="../connexion.html"><button>Connexion</button></a>
+            <?php endif; ?>
+            <a href="#" title="Favoris">❤</a>
+        </div>
     </header>
 
     <section class="categories">
@@ -39,6 +50,7 @@ if ($vetements == 0) {
         <a href="jeanf.php" class="category-btn">Jeans</a>
         <a href="vestef.php" class="category-btn">Vestes</a>
         <a href="pullf.php" class="category-btn">Pulls</a>
+        <a href="chemisef.php" class="category-btn">Chemises</a>
         <a href="accessoiref.php" class="category-btn">Accessoires</a>
         <a href="chaussuref.php" class="category-btn">Chaussures</a>
     </section>

@@ -91,22 +91,6 @@ header {
     cursor: pointer;
 }
 
-.search-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.search-icons input {
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
-}
-
-.search-icons span {
-    font-weight: bold;
-}
-
 .admin-content {
     padding: 40px;
     background-color: #fff;
@@ -142,20 +126,20 @@ header {
     background-color: #e55b5b;
 }
 
-
 .search-icons {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
-.search-icons input[type="search"] {
-    padding: 5px 10px;
+.search-icons input {
+    padding: 8px 15px;
+    border-radius: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
 }
-
+.search-icons span {
+    font-weight: bold;
+}
 .search-icons button {
     padding: 5px 10px;
     font-size: 14px;

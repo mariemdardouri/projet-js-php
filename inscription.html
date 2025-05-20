@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Créer un compte</title>
-    <link rel="stylesheet" href="inscription.css">
-    <script>
-        document.querySelector("form").addEventListener("submit", function(event) {
-            const password = document.querySelector('input[name="password"]').value;
-            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-        
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
-        
-            if (!passwordRegex.test(password)) {
-                alert("Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.");
-                event.preventDefault();
-                return;
-            }
-        
-            if (password !== confirmPassword) {
-                alert("Les mots de passe ne correspondent pas.");
-                event.preventDefault();
-            }
-        });
-        </script>        
-</head>
-<body>
+    <link rel="stylesheet" href="inscription.css?v=1"/>
+   
+  </head>
+  <body>
     <div class="container">
-        <h1>Créer un compte</h1>
-        <form action="php/inscription.php" method="post">
-            <table>
-                <tr>
-                    <td>Nom :</td>
-                    <td><input type="text" name="nom" placeholder="Entrez votre nom" required></td>
-                </tr>
-                <tr>
-                    <td>Prénom :</td>
-                    <td><input type="text" name="prenom" placeholder="Entrez votre prénom" required></td>
-                </tr>
-                <tr>
-                    <td>Email :</td>
-                    <td><input type="email" name="email" placeholder="Entrez votre email" required></td>
-                </tr>
-                <tr>
-                    <td>Téléphone :</td>
-                    <td><input type="tel" name="telephone" placeholder="Entrez votre numéro de téléphone" required></td>
-                </tr>
-                <tr>
-                    <td>Mot de passe :</td>
-                    <td><input type="password" name="password" placeholder="Entrez votre mot de passe" required></td>
-                </tr>
-                <tr>
-                    <td>Confirmer le mot de passe :</td>
-                    <td><input type="password" name="confirm_password" placeholder="Confirmez votre mot de passe" required></td>
-                </tr>
-
-            </table>
-            <button type="submit">S'inscrire</button>
-        </form>
-        <a href="connexion.html" class="back-link">Retour à la connexion</a>
+      <h1>Créer un compte</h1>
+      <form action="php/inscription.php" method="post">
+        <table>
+          <tr>
+            <td>Nom :</td>
+            <td>
+              <input
+                type="text"
+                name="nom"
+                placeholder="Entrez votre nom"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Prénom :</td>
+            <td>
+              <input
+                type="text"
+                name="prenom"
+                placeholder="Entrez votre prénom"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Email :</td>
+            <td>
+              <input
+                type="email"
+                name="email"
+                placeholder="Entrez votre email"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Téléphone :</td>
+            <td>
+              <input
+                type="tel"
+                name="telephone"
+                placeholder="Entrez votre numéro de téléphone"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Mot de passe :</td>
+            <td>
+              <input
+                type="password"
+                name="password"
+                placeholder="Entrez votre mot de passe"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Confirmer le mot de passe :</td>
+            <td>
+              <input
+                type="password"
+                name="confirm_password"
+                placeholder="Confirmez votre mot de passe"
+                required
+              />
+            </td>
+          </tr>
+        </table>
+        <button type="submit">S'inscrire</button>
+      </form>
+      <a href="connexion.html" class="back-link">Retour à la connexion</a>
     </div>
-</body>
+  </body>
 </html>
