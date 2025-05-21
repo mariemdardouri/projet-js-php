@@ -36,7 +36,11 @@ $user = $_SESSION['user'] ?? null;
             <a href="#" title="Favoris">❤</a>
         </div>
     </header>
-
+    <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+    <script>
+        alert("Commande passée avec succès !");
+    </script>
+    <?php endif; ?>
     <section class="hero">
         <div>
             <h1>Découvrez Notre Collection</h1>

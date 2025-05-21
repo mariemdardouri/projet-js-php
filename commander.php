@@ -1,3 +1,8 @@
+<?php
+include 'php/config.php';
+session_start();
+$user = $_SESSION['user'] ?? null;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,7 +21,8 @@
 
 <div class="container-box">
   <form id="checkoutForm">
-
+    <input type="hidden" name="panier" id="panierInput">
+    <input type="hidden" name="id_vetement" value="123">
     <!-- Étape 1 -->
     <div class="step-box step active" id="step1">
       <h2>Choisis un mode d’expédition</h2>
@@ -30,7 +36,7 @@
 
       <div id="addressForm">
         <label for="addressInput">Adresse de livraison :</label>
-        <textarea id="addressInput" placeholder="Entrez votre adresse complète" required></textarea>
+        <textarea id="addressInput" name="addressInput" placeholder="Entrez votre adresse complète" required></textarea>
       </div>
 
       <button type="button" class="btn-continue" id="btnStep1" disabled>Continuer</button>
@@ -158,10 +164,40 @@
     `;
   }
 
-  document.getElementById('checkoutForm').addEventListener('submit', e => {
-    e.preventDefault();
-    alert("Commande confirmée !");
-  });
+  document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    let panier = JSON.parse(localStorage.getItem("cart")) || [];
+    
+    // Normalisation du panier (convertit id en id_vetement si nécessaire)
+    panier = panier.map(item => {
+        return {
+            id_vetement: item.id_vetement || item.id, // Prend id_vetement ou id comme fallback
+            nom: item.nom,
+            prix: item.prix,
+            image: item.image,
+            taille: item.taille,
+            quantite: item.quantite
+        };
+    });
+
+    // Vérification
+    const panierValide = panier.every(item => {
+        return item.id_vetement !== undefined && 
+               item.taille !== undefined &&
+               item.quantite !== undefined &&
+               item.prix !== undefined;
+    });
+
+    if (!panierValide) {
+        e.preventDefault();
+        console.error("Panier invalide après normalisation:", panier);
+        alert("Erreur dans le panier. Veuillez réessayer.");
+        return;
+    }
+
+    document.getElementById("panierInput").value = JSON.stringify(panier);
+    this.action = "valider_commande.php";
+    this.method = "POST";
+});
 </script>
 
 </body>

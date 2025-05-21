@@ -1,6 +1,7 @@
+ 
  //selectionner taille pour ajoute au panier
        function ajouterAuPanier(span) {
-            const id = span.getAttribute('data-id');
+            const id_vetement = span.getAttribute('data-id'); // Changé de id à id_vetement
             const nom = span.getAttribute('data-nom');
             const prix = span.getAttribute('data-prix');
             const image = span.getAttribute('data-image');
@@ -8,11 +9,21 @@
 
             let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-            let existing = cart.find(item => item.id === id && item.taille === taille);
+            let existing = cart.find(item => 
+                (item.id_vetement || item.id) == id_vetement && 
+                item.taille === taille
+            );
             if (existing) {
                 existing.quantite += 1;
             } else {
-                cart.push({ id, nom, prix, image, taille, quantite: 1 });
+                cart.push({ 
+                    id_vetement: id_vetement, // Toujours utiliser id_vetement
+                    nom: nom,
+                    prix: parseFloat(prix), // Convertir en nombre
+                    image: image,
+                    taille: taille,
+                    quantite: 1
+                });
             }
             localStorage.setItem("cart", JSON.stringify(cart));
             document.getElementById("cart-count").innerText = cart.reduce((sum, item) => sum + item.quantite, 0);
