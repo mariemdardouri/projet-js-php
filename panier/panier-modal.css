@@ -1,0 +1,285 @@
+/* Modal d'ajout au panier */
+.modal {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    z-index: 9999;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 300px;
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.modal-content {
+    width: 100%;
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    animation: slideInLeft 0.3s ease-out;
+}
+
+.modal-details {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-details img {
+    width: 80px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.commander {
+    background-color: #00c853;
+    color: white;
+    padding: 10px;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.voir-panier {
+    background-color: white;
+    border: 1px solid #333;
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Modal panier */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* noir transparent */
+    display: none;
+    z-index: 9999;
+    transition: opacity 0.7s ease;
+}
+.modalPanier {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 360px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.livraison {
+    background-color: #e7f9f1;
+    color: #006400;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+.articles-panier {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.article {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.article img {
+    margin-top: 5px;
+    width: 70px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.infos-article {
+    flex-grow: 1;
+}
+
+.infos-article .prix {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.infos-article .taille {
+    font-size: 15px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actions button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.btnTotal {
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    height: 25%;
+}
+
+.livraison,.sous-total, .total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.sous-total strong, .total strong {
+    font-weight: bold;
+}
+
+.sous-total span, .total span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.sous-total p, .total p {
+    margin: 4px 0;
+}
+
+.total {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#total-panier {
+    color: #000;
+}
+
+.passer-commande-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    background-color: #00b66c;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.passer-commande-btn:hover {
+    background-color: #009e5d;
+}
+
+.livraison-gratuite {
+    color: #00b66c;
+    font-weight: bold;
+}
+
+/* MODAL Modifier */
+#modal-modifier .modal-content img {
+  width: 80px;
+  margin-right: 10px;
+}
+
+.taille-selector span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.taille-selector .active {
+  background-color: #000;
+  color: white;
+}
+
+.quantite-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.quantite-control button {
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+}
+.btn-commander {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 5px;
+    background-color: #f76c6c;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.btn-commander:hover{
+    background-color: #e55b5b;
+}

@@ -1,95 +1,230 @@
-
-body {
-    font-family: Arial, sans-serif;
+body, html {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-    color: #333;
-}
-
-header {
-    background-color: #fff;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 24px;
-    color: #f76c6c;
-}
-
-main {
-    max-width: 600px;
-    margin: 30px auto;
+    overflow-x: hidden;
+  }
+.container-box {
+    width: 650px;                /* Taille fixe en largeur */
+    height: 400px;               /* Hauteur fixe */
     padding: 20px;
+    margin: 0 auto;           /* Centrer horizontalement */
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    overflow: hidden;           /* Évite les débordements */
+    position: relative;
 }
-
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+  .content-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  background-color: #fff;
+  max-width: 800px;
+  margin: 0 auto;
 }
-
-form {
+  .container {
+    min-height: 100vh; /* Hauteur de la page */
     display: flex;
     flex-direction: column;
-    gap: 15px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-table td:first-child {
-    font-weight: bold;
-    color: #333;
-}
-
-input[type="text"],
-input[type="tel"],
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-textarea {
-    resize: none;
-    height: 100px;
-}
-
-button {
-    width: 100%;
-    padding: 12px;
-    background-color: #f76c6c;
-    color: white;
+    justify-content: flex-end; /* pousse le contenu vers le bas */
+    padding: 20px; /* espace autour */
+    box-sizing: border-box;
+  }
+  .buttons {
+    display: flex;
+    justify-content: flex-start; /* boutons à gauche */
+    gap: 10px; /* espace entre les boutons */
+    margin-top: 30px; /* espace sous les boutons */
+  }
+  .btn-continue {
+    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #e55b5b;
-}
-
-.note {
+    color: white;
+    background-color: #007bff;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+  .btn-continue[style] {
+    background-color: #555 !important;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #000;
+    background: #fff;
+  }
+  /* Barre de navigation en haut */
+  .progress-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-weight: 600;
     font-size: 14px;
-    color: #555;
-    text-align: center;
-    margin-top: 10px;
+  }
+  .progress-bar div {
+    color: #999;
+    cursor: default;
+  }
+  .progress-bar .active {
+    color: #000;
+  }
+  .progress-bar div::after {
+    content: '>';
+    margin-left: 8px;
+  }
+  .progress-bar div:last-child::after {
+    content: '';
+  }
+
+  h2 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  /* Étapes */
+  .step {
+    display: none;
+  }
+  .step.active {
+    display: block;
+  }
+
+  /* Mode d'expédition : option box */
+  .shipping-option {
+    border: 1px solid #000;
+    padding: 20px 25px;
+    cursor: pointer;
+    max-width: 450px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .shipping-option .left {
+    display: flex;
+    flex-direction: column;
+    font-weight: 400;
+  }
+  .shipping-option .left .title {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .shipping-option.selected {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Formulaire adresse (caché au départ) */
+  #addressForm {
+    display: none;
+    max-width: 450px;
+    margin-bottom: 20px;
+  }
+  #addressForm label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  #addressForm input, #addressForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  /* Bouton continuer */
+  .btn-continue {
+    background: #000;
+    color: #fff;
+    padding: 14px 26px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    float: right;
+    border-radius: 4px;
+  }
+  .btn-continue:disabled {
+    background: #555;
+    cursor: not-allowed;
+  }
+
+  /* Paiement */
+  .payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+  }
+  label {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+  }
+
+  .card-form {
+    margin-top: 20px;
+    max-width: 400px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card-form input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+
+  .summary-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-width: 450px;
+    font-size: 16px;
+  }
+  .summary-box p {
+    margin: 10px 0;
+  }
+
+.step-box {
+    height: 100%;
+    overflow-y: auto;
+}
+.confirm-btn {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+  background-color: #f76c6c;
+}
+
+
+.container-box {
+  position: relative;
+}
+
+.fixed-buttons {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
 }
