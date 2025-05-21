@@ -10,8 +10,8 @@
             <span id="taille-select"></span>
         </div>
         </div>
-        <button class="commander">PASSER COMMANDE</button>
-        <a href="panier.php"><button class="voir-panier">VOIR PANIER</button></a>
+        <a href="../commander.php"><button class="commander">PASSER COMMANDE</button></a>
+        <button class="voir-panier" onclick="ouvrirPanierComplet()">VOIR PANIER</button>
     </div>
 </div>
 <div id="overlay" class="overlay" onclick="fermerTousModals()"></div>
@@ -41,7 +41,7 @@
             <p class="livraison"><strong>Frais d'envoi</strong> <span class="livraison-gratuite">GRATUIT</span></p>
         </div>
         <p class="total"><strong>Total</strong><span id="total-panier">0.00 TND</span></p>
-        <button class="btn-commander">PASSER COMMANDE</button>
+        <a href="../commander.php"><button class="btn-commander">PASSER COMMANDE</button></a>
     </div>
   </div>
 </div>
